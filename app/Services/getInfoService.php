@@ -19,7 +19,7 @@ class getInfoService
             $flash = [];
             $product = Products::where('code', $code)->with('product_material')->first();
             $flash['product_name'] = $product->name;
-            $flash['product_qty'] = $product_count;
+            $flash['product_qty']  = $product_count;
 
             foreach ($product->product_material as $key=>$product_material) {
                 $this->flashWarehouse[$product_material->material->id] = 0;
@@ -33,7 +33,7 @@ class getInfoService
                             'warehouse_id'  => $wareHouse->id,
                             'material_name' => $product_material->material->name,
                             'qty'           => $qty,
-                            'price' => $wareHouse->price,
+                            'price'         => $wareHouse->price,
                         ];
 
                         $this->flashWarehouse[$wareHouse->material->id] = $qty;
@@ -44,7 +44,7 @@ class getInfoService
                                     'warehouse_id'  => null,
                                     'material_name' => $product_material->material->name,
                                     'qty'           => $needQty,
-                                    'price' => $wareHouse->price,
+                                    'price' =>      null,
                                 ];
                             }
                         }
